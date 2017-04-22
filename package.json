@@ -4,11 +4,18 @@
   "description": "Javascript Dev Environment set up pluralsight course",
   "main": "index.js",
   "scripts": {
-    "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src",
+    "start:message" : "babel-node buildScripts/startMessage.js",
+    "prestart": "npm-run-all --parallel start:message",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch":"npm run lint -- --watch",
     "open:src": "babel-node buildScripts/srcServer.js",
     "security-check": "nsp check",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch":"npm run test -- --watch",
+    "generate-mock-data":"babel-node buildScripts/generateMockData",
+    "prestart-mockapi":"npm run generate-mock-data",
+    "start-mockapi":"json-server --watch src/api/db.json --port 3001"
   },
   "repository": {
     "type": "git",
