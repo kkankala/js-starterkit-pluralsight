@@ -2,7 +2,6 @@ import './index.css';
 // import numeral from 'numeral';
 
 // const courseValue = numeral(1000).format('$0,0.00');
-// debugger;
 // console.log(`I would pay ${courseValue} for this awesome course!`);
 
 import {
@@ -25,10 +24,9 @@ getUsers().then(result => {
     document.getElementById('users').innerHTML = usersBody;
 
     const deleteLink = global.document.getElementsByClassName('deleteUser');
-debugger;
+
     Array.from(deleteLink, link => {
         link.onclick = function(event){
-            debugger;
             const element = event.target;
             event.preventDefault();
             deleteUser(element.attributes["data-id"].value);
