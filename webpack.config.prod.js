@@ -4,10 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-export default {
-  debug: true,
-  devtool: 'source-map',
-  noInfo: false,
+export default { 
   entry: {
     vendor: path.resolve(__dirname, 'src/vendor'),
     main: path.resolve(__dirname, 'src/index')
@@ -53,15 +50,15 @@ export default {
     }),
 
     // Eliminate duplicate packages when generating bundle
-    new webpack.optimize.DedupePlugin(),
+    //new webpack.optimize.DedupePlugin(),
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
+    rules: [
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap')}
     ]
   }
 };
