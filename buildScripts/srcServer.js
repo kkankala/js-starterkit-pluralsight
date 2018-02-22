@@ -2,10 +2,10 @@ import express from 'express';
 import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
-import config from '../webpack.config.dev'
+import config from '../webpack.config.dev';
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
